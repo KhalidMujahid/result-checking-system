@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Dashboard | Result Processing System</title>
+    <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font/css/all.min.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+
+<body>
+    <div class="header p-3 bg-primary d-flex justify-content-between align-items-center">
+        <h1 class="text-white">Result Processing System</h1>
+        <button class="button btn btn-danger">Logout <i class="fas fa-power-off"></i></button>
+    </div>
+
+    <%if (student) {%>
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img width="300" style="object-fit:fill;" height="300" src="../../assets/noavater.png"
+                                alt="image" class="card-img mb-3">
+                            <p><b>Full name</b>: <%= student.student_id.fname %>
+                                    <%= student.student_id.lname %>
+                            </p>
+                            <p><b>Matric number</b>: <%= student.student_id.matnumber %>
+                            </p>
+                            <p><b>Level</b>: <%= student.student_id.level %>
+                            </p>
+                            <p><b>No of courses:</b>: <%= student.student_id.courses.length %>
+                            </p>
+                            <p><b>Depertement</b>: <%= student.student_id.dept %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 mt-2">
+                    <div class="border p-3">
+                        <div>
+                            <h3>Result:</h3>
+                        </div>
+                        <div class="row border p-3">
+                            <div class="col">
+                                <h4>S/N</h4>
+                                <% student.student_id.courses.forEach((c,i)=> {%>
+                                    <p><b>
+                                            <%= i + 1 %>
+                                        </b></p>
+                                    <%})%>
+                            </div>
+                            <div class="col">
+                                <h4>Course Code</h4>
+                                <% student.course_code.forEach(code=> {%>
+                                    <p>
+                                        <%= code %>
+                                    </p>
+                                    <%})%>
+                            </div>
+                            <div class="col">
+                                <h4>Grade</h4>
+                                <% student.course_grade.forEach(grade=> {%>
+                                    <% if(grade==="A" ){%>
+                                        <p class="text-success">
+                                            <%= grade %>
+                                        </p>
+                                        <%} else if(grade==="F" ){%>
+                                            <p class="text-danger">
+                                                <%= grade %>
+                                            </p>
+                                            <%} else {%>
+                                                <p>
+                                                    <%= grade %>
+                                                </p>
+                                                <%}%>
+                                                    <%})%>
+                            </div>
+                        </div>
+                        <div class="my-2 d-flex justify-content-end">
+                            <h5>GP: <%= student.student_id.courses.length / 4 %>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%} else {%>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <img width="300" style="object-fit:fill;" height="300" src="../../assets/noavater.png"
+                                    alt="image" class="card-img">
+                                <p><b>Full name</b>: <%= st.fname %>
+                                        <%= st.lname %>
+                                </p>
+                                <p><b>Matric number</b>: <%= st.matnumber %>
+                                </p>
+                                <p><b>Level</b>: <%= st.level %>
+                                </p>
+                                <p><b>No of courses:</b>: <%= st.courses.length %>
+                                </p>
+                                <p><b>Depertement</b>: <%= st.dept %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 mt-2">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+                            <h1 class="text-danger">Result Not Ready!</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <%}%>
+                <div class="footer text-center">
+                    <h5>Powered By Hi-Tech</h5>
+                    <p>&copy; 2022</p>
+                </div>
+</body>
+
+</html>

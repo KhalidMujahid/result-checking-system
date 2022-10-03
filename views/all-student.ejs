@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>All Students | Result Processing System</title>
+  <link rel="stylesheet" href="../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/font/css/all.min.css">
+  <style>
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header p-3 bg-secondary">
+    <h1 class="text-white">Admin Dashboard</h1>
+  </div>
+  <div class="row">
+    <div class="bg-secondary col-md-2 p-3" style="height:calc(100vh - 100px);overflow: hidden;">
+      <a href="/admin/dashboard" class="btn btn-outline-light w-100 mt-2">Home <i class="fas fa-home"></i></a>
+      <a href="/student/reg" class="btn btn-outline-light w-100 mt-2">Register student <i class="fas fa-user"></i>
+      </a>
+      <a href="/add/result" class="btn btn-outline-light w-100 mt-2">Add result <i class="fas fa-plus"></i>
+      </a>
+      <a href="/students/all" class="btn btn-light w-100 mt-2">View all students <i class="fas fa-eye"></i> </a>
+      <a href="/admin/about" class="btn btn-outline-light w-100 mt-2">About us <i class="fas fa-users"></i></a>
+      <div class="mt-5 text-center text-white">
+        <p>Powered by Hi-Tech</p>
+        <p>&copy; 2022</p>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="container">
+        <div class="my-3">
+          <h4>All Students</h4>
+        </div>
+        <div>
+          <table class="table table-responsive hover">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Full name</th>
+                <th>Matric number</th>
+                <th>Level</th>
+                <th>Depertement</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(students.length) {%>
+                <% students.forEach((student,i)=> {%>
+                  <tr>
+                    <td>
+                      <%= i + 1 %>
+                    </td>
+                    <td>
+                      <%= student.fname %>
+                        <%= student.lname %>
+                    </td>
+                    <td>
+                      <%= student.matnumber %>
+                    </td>
+                    <td>
+                      <%= student.level %>
+                    </td>
+                    <td>
+                      <%= student.dept %>
+                    </td>
+                    <td>
+                      <a class="text-danger" href="/delete/<%= student._id %>">Delete <i class="fas fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  <%})%>
+                    <%} else {%>
+                      <div>
+                        <h4 class="text-danger">No student in the DB</h4>
+                      </div>
+                      <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
